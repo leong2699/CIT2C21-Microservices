@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - My Profile</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                    <li class="nav-item active">
+                            <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cardContainer" style="display:none">
+        <div class="w-50 px-3 py-3 pt-md-4 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 font-weight-bold">My Profile</h1>
+            <img src="https://img.icons8.com/plasticine/150/000000/user-group-man-man.png">
+        </div>
+
+        <!-- Cards container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-10 pb-4 d-block m-auto">
+                    <div class="card-item" style="box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);">
+                        <div class="pt-4 pb-3  text-center" style="letter-spacing: 2px" id="userUsername">
+
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="card-description">
+                                <ul class="list-unstyled mt-3 mb-4" id="userDetails">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-button pb-4 text-center" id="userButtons">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="updatePasswordModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateUserID">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">New Password</label>
+                        <input type="password" class="form-control" id="updatePassword"
+                            placeholder="Enter your new password here">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Retype New Password</label>
+                        <input type="password" class="form-control" id="updatePassword2"
+                            placeholder="Retype your new password here">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updatePasswordBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="updateInfoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Personal Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateUserID">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">New Email</label>
+                        <input type="text" class="form-control" id="updateEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">New Address</label>
+                        <input type="text" class="form-control" id="updateAddress"
+                            placeholder="Enter your new Address here">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">New Unit Number</label>
+                        <input type="text" class="form-control" id="updateUnitNumber"
+                            placeholder="Enter your new Unit Number here">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateInfoBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        var userURI = "https://localhost:44316/api/Users";
+        var userArray = [];
+        var patchInfoURI = "https://localhost:44316/api/patchInfo";
+        var patchPasswordURI = "https://localhost:44316/api/patchPassword";
+
+        var Role = sessionStorage.getItem("Role");
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            window.location.href = "login.html";
+        }
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardContainer').show("clip", 500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            getUser(userID);
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        //Get UserProfile by ID
+        function getUser(userID) {
+            $('#userUsername').html("");
+            $('#userDetails').html("");
+            $('#userButtons').html("");
+            $.ajax({
+                type: 'GET',
+                url: userURI + '?token=' + token,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+
+                    userArray = data;
+
+                    for (i = 0; i < userArray.length; i++) {
+
+                        if (userArray[i].UserID == userID) {
+                            $('#userUsername').append(
+                                "<h4 style='font-weight: 1000; font-size: 2.0em;' class='text-danger'>" + userArray[i].Username + "'s " +
+                                "<span style='font-size: 20px;'>Information</span>" +
+                                "</h4>"
+                            )
+                            $('#userDetails').append(
+                                '<li ><strong>Email: </strong>' + userArray[i].Email + '</li>' +
+                                '<li ><strong>Address: </strong>' + userArray[i].Address + '</li>' +
+                                '<li ><strong>Unit Number: </strong>' + userArray[i].UnitNumber + '</li>'
+                            )
+                            $('#userButtons').append(
+                                '<button type="button" index= "' + i + '" class="btn btn-lg btn-secondary w-75 openUpdateInfoBtn" data-toggle="modal" data-target="#updateInfoModal">Update Profile</button>' +
+                                '<hr>' +
+                                '<button type="button" index= "' + i + '" class="btn btn-lg btn-info w-75 openUpdatePasswordBtn"  data-toggle="modal" data-target="#updatePasswordModal">Update Password</button>'
+                            )
+                        }
+                    }
+                }
+            });
+        }
+
+        function patchInfo(id) {
+            var info = {
+                UserID: id,
+                Email: $("#updateEmail").val(),
+                Address: $("#updateAddress").val(),
+                UnitNumber: $("#updateUnitNumber").val()
+            }
+            $.ajax({
+                type: "PATCH",
+                url: patchInfoURI  + '?token=' + token,
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(info),
+                success: function (data) {
+                    if (data.result == "success") {
+                        alert("Info updated sucessfully!");
+                        location.reload();
+                    }
+                }
+
+            });
+
+
+        }
+
+        $(document).on("click", ".openUpdateInfoBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateUserID').val(userArray[num].UserID);
+            $('#updateEmail').val(userArray[num].Email);
+            $('#updateAddress').val(userArray[num].Address);
+            $('#updateUnitNumber').val(userArray[num].UnitNumber);
+
+        })
+
+        $(document).on("click", "#updateInfoBtn", function () {
+            var id = $('#updateUserID').val();
+            patchInfo(id);
+        })
+
+        function patchPassword(id) {
+            var password = {
+                UserID: id,
+                Password: $("#updatePassword").val()
+            }
+            if ($("#updatePassword").val() == $("#updatePassword2").val()) {
+                $.ajax({
+                    type: "PATCH",
+                    url: patchPasswordURI + '?token=' + token,
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(password),
+                    success: function (data) {
+                        if (data.result == "success") {
+                            alert("Password updated sucessfully!");
+                            location.reload();
+                        }
+                    }
+
+                });
+            } else {
+                alert("Password does not match!");
+            }
+
+
+        }
+
+        $(document).on("click", ".openUpdatePasswordBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateUserID').val(userArray[num].UserID);
+        })
+
+        $(document).on("click", "#updatePasswordBtn", function () {
+            var id = $('#updateUserID').val();
+            patchPassword(id);
+        })
+
+    </script>
+</body>
+
+</html>

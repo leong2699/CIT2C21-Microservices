@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Product Details</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <br>
+        <div class="card">
+            <div class="row">
+                <aside class="col-sm-6 border-right" id="ProductImage">
+
+                </aside>
+                <aside class="col-sm-6">
+                    <article class="card-body p-5">
+                        <h3 class="title mb-3" id="ProductName"></h3>
+
+                        <p class="price-detail-wrap">
+                            <span class="price h3 text-warning">
+                                <span class="currency">SGD $</span><span class="num" id="Price"></span>
+                            </span>
+                        </p>
+                        <div class="param param-feature">
+                            <div id="Brand"><b>Brand: </b></div>
+                            <br>
+                        </div>
+                        <div class="item-property">
+                            <div><b>Description</b></div>
+                            <div>
+                                <p id="ProductDescription"></p>
+                            </div>
+                        </div>
+
+                        <div class="param param-feature">
+                            <div id="Sold"><b>Sold: </b></div>
+
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="param param-inline">
+                                    <div>Quantity: </div>
+                                    <div>
+                                        <select class="form-control form-control-sm" id="quantity" style="width:70px;">
+                                            <option> 1 </option>
+                                            <option> 2 </option>
+                                            <option> 3 </option>
+                                        </select>
+                                    </div>
+                                </div> <!-- item-property .// -->
+                            </div> <!-- col.// -->
+                            <div class="col-sm-7">
+                                <div class="param param-inline">
+                                    <div>Size: </div>
+                                    <div>
+                                        <select class="form-control form-control-sm" id="inlineRadio2"
+                                            style="width:70px;">
+                                            <option> XS </option>
+                                            <option> S </option>
+                                            <option> M </option>
+                                            <option> L </option>
+                                            <option> XL </option>
+                                        </select>
+                                    </div>
+                                </div> <!-- item-property .// -->
+                            </div> <!-- col.// -->
+                        </div>
+                        <hr>
+                        <a href="#" class="btn btn-lg btn-danger text-uppercase bg-grad1" id="loginNow"
+                            style="display:none"> Add to cart </a>
+                        <a href="#" class="btn btn-lg btn-outline-danger text-uppercase" id="addToCart"> <i
+                                class="fas fa-shopping-cart"></i> Add to cart </a>
+                        <a href="#" class="btn btn-lg btn-danger text-uppercase bg-grad1" id="viewMall"> View Mall
+                            Location</a>
+                    </article>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <div class="container container mt-4 mb-5">
+        <h3 class="display-5 text-center">Users' Review</h3>
+        <hr class="bg-dark mb-5" style="width: 100%;">
+
+        <br>
+        <div class="col-12" id="reviewList">
+
+        </div>
+        <button type="button" class="btn btn-danger btn-block bg-grad1" id="addNewReviewBtn" data-toggle="modal"
+            data-target="#newReviewModal">Add Review</button>
+    </div>
+
+    <div class="modal fade" id="newReviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Your Comments : </label>
+                        <input type="text" class="form-control" id="newComment" placeholder="Comment">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitReviewBtn">Submit Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+
+        var productURI = "https://localhost:44343/api/Products";
+        var productArray = [];
+        var reviewURI = "https://localhost:44311/api/Reviews";
+        var reviewArray = [];
+        var cartURI = "https://localhost:44367/api/Carts";
+        var cartArray = [];
+
+        var Role = sessionStorage.getItem("Role");
+        var dNow = new Date();
+        var localdate = (dNow.getMonth() + 1) + '/' + dNow.getDate() + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds();
+
+        var currentProductID = sessionStorage.getItem("ProductID");
+        var userID = sessionStorage.getItem("userID");
+        var MallID = sessionStorage.getItem("MallID");
+        var Brand = sessionStorage.getItem("Brand");
+        var ProductName = sessionStorage.getItem("ProductName");
+        var ProductDescription = sessionStorage.getItem("ProductDescription");
+        var Price = sessionStorage.getItem("Price");
+        var ProductImage = sessionStorage.getItem("ProductImage");
+        var Sold = sessionStorage.getItem("Sold");
+
+        var userName = sessionStorage.getItem("username");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            $('#loginNow').show();
+            $('#addToCart').hide();
+            $('#addNewReviewBtn').hide();
+            $('#cartLink').hide();
+        }
+
+
+        function userIsLoggedIn() {
+            $('#cardList').show("shake", 500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function GetProductDetails() {
+            $('#ProductName').append(ProductName);
+            $('#Brand').append(Brand);
+            $('#ProductDescription').append(ProductDescription);
+            $('#Price').append(Price);
+            $('#ProductImage').append('<a><img src="data:image/jpeg;base64,' + ProductImage + '"style="height: 600px;width: 560px;"></a>');
+            $('#Sold').append(Sold);
+        }
+
+        //Get Review by ID
+        function getReview(currentProductID) {
+            $.ajax({
+                type: 'GET',
+                url: reviewURI,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+
+                    reviewArray = data;
+
+                    $('#reviewList').html('');
+                    //Iterate through the bookArray to generate rows to populate the table
+                    for (i = 0; i < reviewArray.length; i++) {
+
+                        if (reviewArray[i].ProductID == currentProductID) {
+                            $('#reviewList').append(
+                                '<div class="media comment-box">' +
+                                '<div class="media-left">' +
+                                '<a>' +
+                                '<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">' +
+                                '</a>' +
+                                '</div>' +
+                                '<div class="media-body">' +
+                                '<div class="media-heading h5"><strong>' + reviewArray[i].Username + '</strong>' + '</strong> <span class="text-muted float-right">' + reviewArray[i].CommentDate + '</span></div>' +
+                                '<p id="reviewComment">' + reviewArray[i].Comment + '</p>' +
+                                '</div>' +
+                                '</div>'
+                            )
+
+                        }
+                    }
+                }
+            });
+        }
+
+        GetProductDetails();
+        getReview(currentProductID);
+
+
+        $(document).on("click", "#viewMall", function () {
+            window.location.href = "mall.html";
+        })
+
+        $(document).on("click", "#loginNow", function () {
+            window.location.href = ("login.html");
+        })
+
+
+        function postReview() {
+            var review = {
+                ProductID: currentProductID,
+                UserID: userID,
+                Comment: $('#newComment').val(),
+                CommentDate: localdate
+            };
+            $.ajax({
+                type: 'POST',
+                url: reviewURI + '?token=' + token,
+                data: JSON.stringify(review),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    getReview(currentProductID);
+                    $('#newReviewModal').modal('hide');
+                }
+            });
+        }
+
+        $(document).on("click", "#submitReviewBtn", function () {
+            postReview();
+        })
+
+        function pushToCart() {
+            var cart = {
+                UserID: userID,
+                ProductID: currentProductID,
+                Quantity: $('#quantity').val(),
+                Size: $('#inlineRadio2').val()
+            };
+            if ($('#inlineRadio2').val() == null) {
+                alert("Please select a size!");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: cartURI,
+                    data: JSON.stringify(cart),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        alert("Item added to cart!");
+                    }
+                });
+            }
+        }
+
+        $(document).on("click", "#addToCart", function () {
+            pushToCart();
+        })
+
+        sessionStorage.removeItem("lotsAvailable");
+        sessionStorage.removeItem("totalLots");
+
+    </script>
+
+</body>
+
+</html>

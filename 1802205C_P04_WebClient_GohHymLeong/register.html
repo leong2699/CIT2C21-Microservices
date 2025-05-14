@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Registration Page</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container registerPage" id="register">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-xl-4 text-center" style="padding-top: 10%;">
+                <div class="form-group">
+                    <img class="mb-4" src="assets/logo.png">
+                    <h1 class="h3 mb-3 font-weight-normal">Registeration Form</h1>
+                    <p><input type="text" class="form-control" id="username" placeholder="Enter your username here"></p>
+                    <p><input class="form-control" type="password" id="password"
+                            placeholder="Enter your password here" /> </p>
+                    <p><input type="email" class="form-control" id="email" placeholder="Enter your email here"></p>
+                    <p><button class="btn btn-danger btn-block bg-grad1" id="registerBtn">Register</button></p>
+                    <p>Already have an account? <a href="login.html">Login here right now!</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+    var userURI = "https://localhost:44316/api/Users";
+
+    var userName = sessionStorage.getItem("username");
+    var token = sessionStorage.getItem("token");
+    if (token != null) {
+        console.log(userName);
+        userIsLoggedIn();
+    }
+
+    //This function is to start the registering process
+    $(document).on("click", "#registerBtn", function () {
+
+        var user = {
+            Username: $('#username').val(),
+            Password: $('#password').val(),
+            Email: $('#email').val(),
+            Role: "User"
+        }
+        $.ajax({
+            type: "POST",
+            url: userURI,
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(user),
+            success: function (data) {
+                if (data.result == "Username already exists!") {
+                    alert("Username already exists!");
+                }
+                else {
+                    alert("Succesfully created account!");
+                    window.location.href = "login.html";
+                }
+            }
+
+        })
+
+    })
+
+    function userIsLoggedIn() {
+        window.location.href = "product.html";
+    }
+</script>
+</body>
+
+</html>

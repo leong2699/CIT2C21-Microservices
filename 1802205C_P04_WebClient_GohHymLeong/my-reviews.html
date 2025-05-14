@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - My Reviews</title>
+
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+                    <a class="navbar-brand">
+                        <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+                    <ul class="nav navbar-nav flex-row">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="product.html">Products</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="promotion.html">Promotions</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                        <li class="nav-item active">
+                            <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="usernameID"></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                                Account</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    <div class="container" id="cardContainer" style="display:none">
+        <div class="w-50 px-3 py-3 pt-md-4 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 font-weight-bold">My Reviews</h1>
+            <img src="https://img.icons8.com/dusk/150/000000/rating.png">
+        </div>
+
+        <!-- Cards container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-10 pb-4 d-block m-auto">
+                    <div class="card-item" style="box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);">
+                        <div class="container container mt-4 mb-5">
+                            <div class="col-12 mb-100" id="reviewList">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="updateReviewModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateReviewID">
+                    <input type="hidden" id="updateReviewProductID">
+                    <input type="hidden" id="updateReviewUserID">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Current Review</label>
+                        <input type="text" class="form-control" id="updateCurrentReview" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">New Review</label>
+                        <input type="text" class="form-control" id="updateComment"
+                            placeholder="Enter your new Review here">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateReviewBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="deleteReviewModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteReviewID">
+                    <h4>Are you sure u want to delete this review?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="deleteReviewBtn">Delete Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        var reviewURI = "https://localhost:44311/api/Reviews";
+        var reviewArray = [];
+
+        var Role = sessionStorage.getItem("Role");
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            window.location.href = "login.html";
+        }
+
+        var dNow = new Date();
+        var localdate = (dNow.getMonth() + 1) + '/' + dNow.getDate() + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds();
+        console.log(localdate);
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardContainer').show("blind", 500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            getReview(userID);
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        //Get Review by ID
+        function getReview(userID) {
+            $.ajax({
+                type: 'GET',
+                url: reviewURI,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+
+                    reviewArray = data;
+
+                    $('#reviewList').html('');
+                    //Iterate through the bookArray to generate rows to populate the table
+                    for (i = 0; i < reviewArray.length; i++) {
+
+                        if (reviewArray[i].UserID == userID) {
+                            $('#reviewList').append(
+                                '<br>' +
+                                '<div class="media comment-box">' +
+                                '<div class="media-left">' +
+                                '<a>' +
+                                '<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">' +
+                                '</a>' +
+                                '</div>' +
+                                '<div class="media-body">' +
+                                '<div class="media-heading h5"><strong>' + reviewArray[i].Username + '</strong>' + '</strong> <span class="text-muted float-right">' + reviewArray[i].CommentDate + '</span>' + '</strong> <span class="text-muted text-center"> for item <strong>ProductID: ' + reviewArray[i].ProductID + '</strong></span></div>' +
+                                '<p id="reviewComment">' + reviewArray[i].Comment + '</p>' +
+                                '<div class="row">' +
+                                '<div class="col-6 openUpdateReviewModalBtn" index= "' + i + '">' +
+                                '<button class="btn btn-danger btn-block bg-grad1" data-toggle="modal" data-target="#updateReviewModal">Update Review</button>' +
+                                '</div>' +
+                                '<div class="col-6 openDeleteReviewModalBtn" index= "' + i + '">' +
+                                '<button class="btn btn-danger btn-block bg-grad1" data-toggle="modal" data-target="#deleteReviewModal">Delete Review</button>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<br>'
+                            )
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateReview(id) {
+            var review = {
+                ReviewID: id,
+                ProductID: $("#updateReviewProductID").val(),
+                UserID: $("#updateReviewUserID").val(),
+                Comment: $("#updateComment").val(),
+                CommentDate: localdate
+            }
+
+            if (review.Comment == '') {
+                alert("Please enter your review!");
+            } else {
+                $.ajax({
+                    type: "PUT",
+                    url: reviewURI + "/" + id + '?token=' + token,
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(review),
+                    success: function (data) {
+                        getReview(userID);
+                        $('#updateReviewModal').modal("hide");
+
+                        //Clears the value inside id=updateComment
+                        $('#updateComment').val("");
+                    }
+                });
+            }
+        }
+
+        function deleteReview(id) {
+            $.ajax({
+                type: "DELETE",
+                url: reviewURI + "/" + id  + '?token=' + token,
+                success: function (data) {
+                    getReview(userID);
+                    $('#deleteReviewModal').modal("hide");
+                }
+            })
+
+        }
+
+        $(document).on("click", ".openUpdateReviewModalBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateReviewID').val(reviewArray[num].ReviewID);
+            $('#updateReviewProductID').val(reviewArray[num].ProductID);
+            $('#updateReviewUserID').val(reviewArray[num].UserID);
+            $('#updateCurrentReview').val(reviewArray[num].Comment);
+            console.log(reviewArray[num])
+        })
+
+        $(document).on("click", "#updateReviewBtn", function () {
+            var id = $('#updateReviewID').val();
+            updateReview(id);
+        })
+
+        $(document).on("click", ".openDeleteReviewModalBtn", function () {
+            var num = $(this).attr("index");
+            $('#deleteReviewID').val(reviewArray[num].ReviewID);
+        })
+
+
+        $(document).on("click", "#deleteReviewBtn", function () {
+            var id = $('#deleteReviewID').val();
+            deleteReview(id);
+        })
+    </script>
+</body>
+
+</html>

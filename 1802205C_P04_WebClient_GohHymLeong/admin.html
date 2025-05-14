@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Admin</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <style>
+        #tableBody img {
+            width: 100px;
+        }
+
+        #tableBodyMall img {
+            width: 100px;
+        }
+    </style>
+
+    <!-- New ProductModal -->
+    <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Product Name</label>
+                        <input type="text" class="form-control" id="newProductName" placeholder="Product Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Mall ID</label>
+                        <input type="text" class="form-control" id="newProductMallID" placeholder="Product Mall ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Brand</label>
+                        <input type="text" class="form-control" id="newProductBrand" placeholder="Product Brand">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Description</label>
+                        <input type="text" class="form-control" id="newProductDescription"
+                            placeholder="Product Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Price</label>
+                        <input type="text" class="form-control" id="newProductPrice" placeholder="Product Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Select Cover Image</label>
+                        <input type="file" class="form-control " id="newProductImage" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="newProductBtn">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Update|Delete ProductModal -->
+    <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateProductID">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Product Name</label>
+                        <input type="text" class="form-control" id="updateProductName" placeholder="Product Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Mall ID</label>
+                        <input type="text" class="form-control" id="updateProductMallID" placeholder="Product Mall ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Brand</label>
+                        <input type="text" class="form-control" id="updateProductBrand" placeholder="Product Brand">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Description</label>
+                        <input type="text" class="form-control" id="updateProductDescription"
+                            placeholder="Product Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Price</label>
+                        <input type="text" class="form-control" id="updateProductPrice" placeholder="Product Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Select Cover Image</label>
+                        <input type="file" class="form-control " id="updateProductImage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Product Sold:</label>
+                        <input type="text" class="form-control" id="updateProductSold" placeholder="Product Sold">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateProductBtn">Update</button>
+                    <button type="button" class="btn btn-primary" id="deleteProductBtn">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="text-center">
+            <br>
+            <h1 class="display-5 font-weight-bold">Products Table</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ProductID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                        <th scope="col"><button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#newProductModal">New Product</button></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <hr class="bg-dark mb-5" style="width: auto;">
+    </div>
+
+    <div class="container">
+        <div class="text-center">
+            <br>
+            <h1 class="display-5 font-weight-bold">Shopping Mall Table</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">MallID</th>
+                        <th scope="col">Mall Name</th>
+                        <th scope="col"></th>
+                        <th scope="col"><button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#newMallModal">New Mall</button></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBodyMall">
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- New MallModal -->
+    <div class="modal fade" id="newMallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Mall</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mall Name</label>
+                        <input type="text" class="form-control" id="newMallName" placeholder="Mall Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Description</label>
+                        <input type="text" class="form-control" id="newMallDescription" placeholder="Mall Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Carpark Code</label>
+                        <input type="text" class="form-control" id="newMallCarparkCode" placeholder="Mall Carpark Code">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Location</label>
+                        <input type="text" class="form-control" id="newMallLocation" placeholder="Mall Location">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Latitude</label>
+                        <input type="text" class="form-control" id="newMallLatitude" placeholder="Mall Latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Longitude</label>
+                        <input type="text" class="form-control" id="newMallLongitude" placeholder="Mall Longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Opening Hours</label>
+                        <input type="text" class="form-control" id="newMallOpeningHours"
+                            placeholder="Mall Opening Hours">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Opening Date</label>
+                        <input type="text" class="form-control" id="newMallOpeningDate" placeholder="Mall Opening Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Select Cover Image</label>
+                        <input type="file" class="form-control " id="newMallImage" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="newMallBtn">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Update|Delete MallModal -->
+    <div class="modal fade" id="updateMallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Mall</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateMallID">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mall Name</label>
+                        <input type="text" class="form-control" id="updateMallName" placeholder="Mall Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Description</label>
+                        <input type="text" class="form-control" id="updateMallDescription"
+                            placeholder="Mall Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Carpark Code</label>
+                        <input type="text" class="form-control" id="updateMallCarparkCode"
+                            placeholder="Mall Carpark Code">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Location</label>
+                        <input type="text" class="form-control" id="updateMallLocation" placeholder="Mall Location">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Latitude</label>
+                        <input type="text" class="form-control" id="updateMallLatitude" placeholder="Mall Latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Longitude</label>
+                        <input type="text" class="form-control" id="updateMallLongitude" placeholder="Mall Longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Opening Hours</label>
+                        <input type="text" class="form-control" id="updateMallOpeningHours"
+                            placeholder="Mall Opening Hours">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mall Opening Date</label>
+                        <input type="text" class="form-control" id="updateMallOpeningDate"
+                            placeholder="Mall Opening Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Select Cover Image</label>
+                        <input type="file" class="form-control " id="updateMallImage" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateMallBtn">Update</button>
+                    <button type="button" class="btn btn-primary" id="deleteMallBtn">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var productURI = "https://localhost:44343/api/Products";
+        var productArray = [];
+
+        var mallURI = "https://localhost:44388/api/Malls";
+        var mallArray = [];
+
+
+        var Role = sessionStorage.getItem("Role");
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            window.location.href = "login.html";
+        }
+
+
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardContainer').show(1500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+            getAllProducts();
+            getAllMalls();
+        }
+
+        function getAllProducts() {
+            $('#tableBody').html("");
+            $.ajax({
+                type: "GET",
+                url: productURI,
+                success: function (data) {
+
+                    productArray = data;
+
+                    for (var i = 0; i < productArray.length; i++) {
+                        ProductID = "<td>" + productArray[i].ProductID + "</td>";
+                        ProductName = "<td>" + productArray[i].ProductName + "</td>";
+                        Price = "<td>" + productArray[i].Price + "</td>";
+                        Update = '<td><button index= "' + i + '" type="button" data-toggle="modal" data-target="#updateProductModal" class="btn btn-success openUpdateProductBtn" >Update</button></td>';
+                        Delete = '<td><button index= "' + i + '" type="button" data-toggle="modal" data-target="#updateProductModal" class="btn btn-danger openDeleteProductBtn">Delete</button></td>';
+
+                        $('#tableBody').append("<tr>" + ProductID + ProductName + Price + Update + Delete + "</tr>");
+
+                    }
+                }
+            })
+        }
+
+        function postProduct() {
+
+            var f = $("#newProductImage")[0].files[0]; // Get image
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    //composing the json object which is to be sent to the Post endpoint
+                    var product = {
+                        MallID: $('#newProductMallID').val(),
+                        Brand: $('#newProductBrand').val(),
+                        ProductName: $('#newProductName').val(),
+                        ProductDescription: $('#newProductDescription').val(),
+                        Price: $('#newProductPrice').val(),
+                        ProductImage: window.btoa(binaryData),
+                        Sold: 0
+                    }
+                    console.log(product);
+                    $.ajax({
+                        type: 'POST',
+                        url: productURI + '?token=' + token,
+                        data: JSON.stringify(product),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            //calling the function again so that the new books are updated
+                            getAllProducts();
+                            $('#newProductModal').modal('hide');
+                        }
+                    });
+
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsBinaryString(f);
+
+        }
+
+        function updateProduct(id) {
+
+            var f = $("#updateProductImage")[0].files[0];
+            var reader = new FileReader();
+            reader.onload = (function (thefile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    var product = {
+                        ProductID: id,
+                        MallID: $('#updateProductMallID').val(),
+                        Brand: $('#updateProductBrand').val(),
+                        ProductName: $('#updateProductName').val(),
+                        ProductDescription: $('#updateProductDescription').val(),
+                        Price: $('#updateProductPrice').val(),
+                        ProductImage: window.btoa(binaryData),
+                        Sold: $('#updateProductSold').val()
+                    }
+
+                    $.ajax({
+                        type: "PUT",
+                        url: productURI + "/" + id + "?token=" + token,
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify(product),
+                        success: function (data) {
+                            getAllProducts();
+                            $('#updateProductModal').modal("hide");
+                            console.log(reader);
+                        }
+                    })
+                }
+            })(f);
+            reader.readAsBinaryString(f);
+        }
+
+        function deleteProduct(id) {
+            $.ajax({
+                type: "DELETE",
+                url: productURI + "/" + id + "?token=" + token,
+                success: function (data) {
+                    getAllProducts();
+                    $('#updateProductModal').modal("hide");
+                }
+            })
+
+        }
+
+
+        $(document).on("click", "#newProductBtn", function () {
+            postProduct();
+        })
+
+        $(document).on("click", ".openUpdateProductBtn,.openDeleteProductBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateProductID').val(productArray[num].ProductID);
+            $('#updateProductMallID').val(productArray[num].MallID);
+            $('#updateProductBrand').val(productArray[num].Brand);
+            $('#updateProductName').val(productArray[num].ProductName);
+            $('#updateProductDescription').val(productArray[num].ProductDescription);
+            $('#updateProductPrice').val(productArray[num].Price);
+            $('#updateProductSold').val(productArray[num].Sold);
+        })
+
+        $(document).on("click", "#updateProductBtn", function () {
+            var id = $('#updateProductID').val();
+            updateProduct(id);
+        })
+
+        $(document).on("click", "#deleteProductBtn", function () {
+            var id = $('#updateProductID').val();
+            deleteProduct(id);
+        })
+
+
+        function getAllMalls() {
+            $('#tableBodyMall').html("");
+            $.ajax({
+                type: "GET",
+                url: mallURI,
+                success: function (data) {
+
+                    mallArray = data;
+
+                    for (var i = 0; i < mallArray.length; i++) {
+                        MallID = "<td>" + mallArray[i].MallID + "</td>";
+                        MallName = "<td>" + mallArray[i].MallName + "</td>";
+                        Update = '<td><button index= "' + i + '" type="button" data-toggle="modal" data-target="#updateMallModal" class="btn btn-success openUpdateMallBtn" >Update</button></td>';
+                        Delete = '<td><button index= "' + i + '" type="button" data-toggle="modal" data-target="#updateMallModal" class="btn btn-danger openDeleteMallBtn">Delete</button></td>';
+
+                        $('#tableBodyMall').append("<tr>" + MallID + MallName + Update + Delete + "</tr>");
+
+                    }
+                }
+            })
+        }
+
+
+        function postMall() {
+
+            var f = $("#newMallImage")[0].files[0]; // Get image
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    //composing the json object which is to be sent to the Post endpoint
+                    var mall = {
+                        MallName: $('#newMallName').val(),
+                        MallImage: window.btoa(binaryData),
+                        Description: $('#newMallDescription').val(),
+                        CarparkCode: $('#newMallCarparkCode').val(),
+                        Location: $('#newMallLocation').val(),
+                        Latitude: $('#newMallLatitude').val(),
+                        Longitude: $('#newMallLongitude').val(),
+                        OpeningHours: $('#newMallOpeningHours').val(),
+                        OpeningDate: $('#newMallOpeningDate').val()
+                    }
+                    console.log(mall);
+                    $.ajax({
+                        type: 'POST',
+                        url: mallURI + '?token=' + token,
+                        data: JSON.stringify(mall),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            getAllMalls();
+                            $('#newMallModal').modal('hide');
+                        }
+                    });
+
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsBinaryString(f);
+
+        }
+
+        function updateMall(id) {
+
+            var f = $("#updateMallImage")[0].files[0];
+            var reader = new FileReader();
+            reader.onload = (function (thefile) {
+                return function (e) {
+                    var binaryData = e.target.result;
+                    var mall = {
+                        MallID: id,
+                        MallName: $('#updateMallName').val(),
+                        MallImage: window.btoa(binaryData),
+                        Description: $('#updateMallDescription').val(),
+                        CarparkCode: $('#updateMallCarparkCode').val(),
+                        Location: $('#updateMallLocation').val(),
+                        Latitude: $('#updateMallLatitude').val(),
+                        Longitude: $('#updateMallLongitude').val(),
+                        OpeningHours: $('#updateMallOpeningHours').val(),
+                        OpeningDate: $('#updateMallOpeningDate').val()
+                    }
+
+                    $.ajax({
+                        type: "PUT",
+                        url: mallURI + "/" + id + "?token=" + token,
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify(mall),
+                        success: function (data) {
+                            getAllMalls();
+                            $('#updateMallModal').modal("hide");
+                        }
+                    })
+                }
+            })(f);
+            reader.readAsBinaryString(f);
+        }
+
+        function deleteMall(id) {
+            $.ajax({
+                type: "DELETE",
+                url: mallURI + "/" + id + "?token=" + token,
+                success: function (data) {
+                    getAllMalls();
+                    $('#updateMallModal').modal("hide");
+                }
+            })
+
+        }
+
+        $(document).on("click", "#newMallBtn", function () {
+            postMall();
+        })
+
+        $(document).on("click", ".openUpdateMallBtn,.openDeleteMallBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateMallID').val(mallArray[num].MallID);
+            $('#updateMallName').val(mallArray[num].MallName);
+            $('#updateMallDescription').val(mallArray[num].Description);
+            $('#updateMallCarparkCode').val(mallArray[num].CarparkCode);
+            $('#updateMallLocation').val(mallArray[num].Location);
+            $('#updateMallLatitude').val(mallArray[num].Latitude);
+            $('#updateMallLongitude').val(mallArray[num].Longitude);
+            $('#updateMallOpeningHours').val(mallArray[num].OpeningHours);
+            $('#updateMallOpeningDate').val(mallArray[num].OpeningDate);
+        })
+
+        $(document).on("click", "#updateMallBtn", function () {
+            var id = $('#updateMallID').val();
+            updateMall(id);
+        })
+
+        $(document).on("click", "#deleteMallBtn", function () {
+            var id = $('#updateMallID').val();
+            deleteMall(id);
+        })
+
+
+
+    </script>
+</body>
+
+</html>

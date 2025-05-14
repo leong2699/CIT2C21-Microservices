@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">
+                <img src="assets/logo.png" width="209" height="200" class="d-inline-block align-top" alt="">
+                <br>
+                SG Mall</h1>
+            <p class="lead text-muted">SG Mall provides shoppers with a wide range of products!
+            </p>
+            <p>
+                <p class="btn btn-dark my-2" id="viewProducts">Click here to start Shopping now!</p>
+            </p>
+        </div>
+    </section>
+
+    <div class="container container mt-4 mb-5">
+        <h3 class="display-4 text-center"> Discover </h3>
+        <hr class="bg-dark mb-4 w-25">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="https://images.financialexpress.com/2018/12/e-commerce-representational.jpg" style="height: 250px;"  alt="Card image cap">
+                    <div class="card-block p-3">
+                        <h4 class="card-title">Shop</h4>
+                        <p class="card-text">Start shopping now by pressing on the button below enter the products world!</p>
+                        <br>
+                        <a href="product.html" class="btn btn-danger rounded-0 mb-2">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="https://www.asiaone.com/sites/default/files/original_images/Jul2017/carparks_040717_st.jpg" style="height: 250px;" alt="Card image cap">
+                    <div class="card-block p-3">
+                        <h4 class="card-title">Carpark Availablity</h4>
+                        <p class="card-text">Tired of waiting every time you are trying to park your vehicle? <strong>Carpark Availability</strong> is here to solve your problem!</p>
+                        <a href="product.html" class="btn btn-danger rounded-0 mb-2">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="https://retailminded.com/wp-content/uploads/2019/07/promotions-min-copy.jpg" style="height: 250px;" alt="Card image cap">
+                    <div class="card-block p-3">
+                        <h4 class="card-title">Promotions</h4>
+                        <p class="card-text">View all the promotions, special offers, and many more!.</p>
+                        <br>
+                        <a href="promotion.html" class="btn btn-danger rounded-0 mb-2">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+
+        var userName = sessionStorage.getItem("username");
+        var token = sessionStorage.getItem("token");
+        var Role = sessionStorage.getItem("Role");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            console.log("SG Mall");
+            $('#cardList').show(1000);
+            $('#cartLink').hide();
+        }
+
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardList').show(1000);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+                $('#logoutLink').show();
+
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        $(document).on("click", "#viewProducts", function () {
+            window.location.href = ("product.html");
+        })
+
+    </script>
+</body>
+
+</html>

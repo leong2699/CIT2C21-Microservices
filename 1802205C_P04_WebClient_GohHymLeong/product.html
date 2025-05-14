@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Shop</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cardContainer" style="display:none">
+        <div class="text-center">
+            <br>
+            <h1>Products</h1>
+            <br>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <div class="input-group-btn search-panel">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span id="search_concept"> Filter Products by : &nbsp; &nbsp;</span> <span
+                                    class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" id="all">All Products</a>
+                                <a class="dropdown-item" id="ascendingprice">Price - Low to High</a>
+                                <a class="dropdown-item" id="descendingprice">Price - High to Low</a>
+                                <a class="dropdown-item" id="topseller">Sold - Top Seller</a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="myInput" placeholder="Search term...">
+                        </span>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" id="cardList">
+
+        </div>
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+
+        var productURI = "https://localhost:44343/api/Products";
+        var productArray = [];
+
+        var adminURI = "https://localhost:44316/api/Admin";
+        var Role = sessionStorage.getItem("Role");
+
+        var dNow = new Date();
+        var localdate = (dNow.getMonth() + 1) + '/' + dNow.getDate() + '/' + dNow.getFullYear() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds();
+        console.log(localdate);
+
+        var userName = sessionStorage.getItem("username");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            getAllProducts();
+            $('#cartLink').hide();
+        }
+
+        function getAllProducts() {
+            $('#cardBody').html("");
+            $.ajax({
+
+                type: "GET",
+                url: productURI,
+                success: function (data) {
+
+                    productArray = data;
+
+                    for (var i = 0; i < productArray.length; i++) {
+                        ViewDetails = '<td><button index= "' + i + '" type="button" class="btn btn-sm btn-dark float-right bg-grad1" id="viewProductDetails">View Details</button>';
+                        $('#cardList').append(
+                            "<div class='col-md-4'>" +
+                            "<figure class='card card-product' style='box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);'>" +
+                            "<img style='height: 350px;' src='data:image/jpeg;base64," + productArray[i].ProductImage + "'>" +
+                            "<figcaption class='info-wrap'>" +
+                            "<h4 class='title'>" + productArray[i].ProductName + "</h4>" +
+                            "<p class='desc'>Brand: " + productArray[i].Brand + "</p>" +
+                            "<div class='rating-wrap'>" +
+                            "<div class='text-muted'>" + productArray[i].Sold + " Sold</div>" +
+                            "</div>" +
+                            "</figcaption>" +
+                            "<div class='bottom-wrap'>" +
+                            ViewDetails +
+                            "<div class='price-wrap h5'>" +
+                            "<span>$" + productArray[i].Price + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</figure >" +
+                            "</div >"
+                        )
+                    }
+                    $('#cardContainer').show(1000);
+                }
+            })
+        }
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            getAllProducts();
+            $('#cardContainer').show("blind", 1000);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            getUserInfo();
+        }
+
+        $(document).on("click", "#viewProductDetails", function () {
+            var num = $(this).attr("index");
+            sessionStorage.setItem("ProductID", productArray[num].ProductID);
+            sessionStorage.setItem("MallID", productArray[num].MallID);
+            sessionStorage.setItem("Brand", productArray[num].Brand);
+            sessionStorage.setItem("ProductName", productArray[num].ProductName);
+            sessionStorage.setItem("ProductDescription", productArray[num].ProductDescription);
+            sessionStorage.setItem("Price", productArray[num].Price);
+            sessionStorage.setItem("ProductImage", productArray[num].ProductImage);
+            sessionStorage.setItem("Sold", productArray[num].Sold);
+            window.location.href = ("product-details.html");
+        })
+
+        function getUserInfo() {
+            var Token = {
+                Token: token,
+            }
+
+            $.ajax({
+                type: "POST",
+                url: adminURI,
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(Token),
+                success: function (data) {
+                    if (data.result == "Admin") {
+                        sessionStorage.setItem("Role", data.result);
+                        isAdmin();
+                    } else {
+
+                    }
+                }
+
+            })
+
+        }
+
+
+        function sortProducts(sort) {
+            $('#cardList').html("");
+            $.ajax({
+
+                type: "GET",
+                url: productURI + '?sort=' + sort,
+                success: function (data) {
+
+                    productArray = data;
+
+                    for (var i = 0; i < productArray.length; i++) {
+                        ViewDetails = '<td><button index= "' + i + '" type="button" class="btn btn-sm btn-dark float-right bg-grad1" id="viewProductDetails">View Details</button>';
+                        $('#cardList').append(
+                            "<div class='col-md-4'>" +
+                            "<figure class='card card-product' style='box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);'>" +
+                            "<img style='height: 350px;' src='data:image/jpeg;base64," + productArray[i].ProductImage + "'>" +
+                            "<figcaption class='info-wrap'>" +
+                            "<h4 class='title'>" + productArray[i].ProductName + "</h4>" +
+                            "<p class='desc'>Brand: " + productArray[i].Brand + "</p>" +
+                            "<div class='rating-wrap'>" +
+                            "<div class='text-muted'>" + productArray[i].Sold + " Sold</div>" +
+                            "</div>" +
+                            "</figcaption>" +
+                            "<div class='bottom-wrap'>" +
+                            ViewDetails +
+                            "<div class='price-wrap h5'>" +
+                            "<span>$" + productArray[i].Price + "</span>" +
+                            "</div>" +
+                            "</div>" +
+                            "</figure >" +
+                            "</div >"
+                        )
+                    }
+                    $('#cardContainer').show(1000);
+                }
+            })
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        $(document).on("click", "#all", function () {
+            sort = 'all';
+            sortProducts(sort);
+        })
+
+        $(document).on("click", "#ascendingprice", function () {
+            sort = "ascendingprice";
+            sortProducts(sort);
+        })
+
+        $(document).on("click", "#descendingprice", function () {
+            sort = "descendingprice";
+            sortProducts(sort);
+        })
+
+        $(document).on("click", "#topseller", function () {
+            sort = "topseller";
+            sortProducts(sort);
+        })
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $('#cardList').html("");
+                $.ajax({
+
+                    type: "GET",
+                    url: productURI + '?ProductName=' + value,
+                    success: function (data) {
+
+                        productArray = data;
+
+                        for (var i = 0; i < productArray.length; i++) {
+                            ViewDetails = '<td><button index= "' + i + '" type="button" class="btn btn-sm btn-dark float-right bg-grad1" id="viewProductDetails">View Details</button>';
+                            $('#cardList').append(
+                                "<div class='col-md-4'>" +
+                                "<figure class='card card-product' style='box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);'>" +
+                                "<img style='height: 350px;' src='data:image/jpeg;base64," + productArray[i].ProductImage + "'>" +
+                                "<figcaption class='info-wrap'>" +
+                                "<h4 class='title'>" + productArray[i].ProductName + "</h4>" +
+                                "<p class='desc'>Brand: " + productArray[i].Brand + "</p>" +
+                                "<div class='rating-wrap'>" +
+                                "<div class='text-muted'>" + productArray[i].Sold + " Sold</div>" +
+                                "</div>" +
+                                "</figcaption>" +
+                                "<div class='bottom-wrap'>" +
+                                ViewDetails +
+                                "<div class='price-wrap h5'>" +
+                                "<span>$" + productArray[i].Price + "</span>" +
+                                "</div>" +
+                                "</div>" +
+                                "</figure >" +
+                                "</div >"
+                            )
+                        }
+                        $('#cardContainer').show(1000);
+                    }
+                })
+                if (value == '') {
+                    getAllProducts();
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - My Orders</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cardContainer" style="display:none">
+        <div class="w-50 px-3 py-3 pt-md-4 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 font-weight-bold" id="titleOrder">My Orders</h1>
+            <img src="https://img.icons8.com/dusk/150/000000/order-history.png">
+        </div>
+
+        <!-- Cards container -->
+        <div class="container">
+            <div class="row" id="orderDetails">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="updateOrderModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Personal Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="updateOrderID">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Current Status:</label>
+                        <input type="text" class="form-control" id="currentStatus"
+                            placeholder="Enter your new Address here" disabled>
+                    </div>
+                    <div>New Status: </div>
+                    <div>
+                        <select class="form-control form-control-sm" id="updateStatus" style="width:100%;">
+                            <option> Processing </option>
+                            <option> Delivering </option>
+                            <option> Completed </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Date of Order</label>
+                        <input type="text" class="form-control" id="updateDate"
+                            placeholder="Enter your new Address here" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Total Price</label>
+                        <input type="text" class="form-control" id="updateTotalPrice"
+                            placeholder="Enter your new Unit Number here" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Paid by</label>
+                        <input type="text" class="form-control" id="updatePayer"
+                            placeholder="Enter your new Unit Number here" disabled>
+                    </div>
+                    <input type="hidden" id="updateUserID">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteOrderBtn">Delete Order</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateOrderBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var orderURI = "https://localhost:44326/api/Orders";
+        var orderArray = [];
+
+        var all = "All";
+        var processing = "Processing";
+        var delivering = "Delivering";
+        var completed = "Completed";
+
+        var Role = sessionStorage.getItem("Role");
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            window.location.href = "login.html";
+        }
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardContainer').show(1500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            if (Role == "Admin") {
+                isAdmin();
+            } else {
+                getOrders(userID);
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+            getAllOrders(all);
+        }
+
+        function getOrders(userID) {
+            $.ajax({
+                type: 'GET',
+                url: orderURI + '?status=all&token=' + token,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+
+                    orderArray = data;
+
+                    for (i = 0; i < orderArray.length; i++) {
+
+                        if (orderArray[i].UserID == userID) {
+                            $('#orderDetails').append(
+                                '<div class="col-lg-12 col-md-6 col-sm-10 pb-4 d-block m-auto" >' +
+                                '<div class="card-item" style="box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);">' +
+                                '<div class="pt-4 pb-3  text-center" style="letter-spacing: 2px">' +
+                                '<h4 style="font - weight: 1000; font - size: 2.0em;" class="text-danger">Order ID: ' + orderArray[i].OrderID +
+                                '</h4>' +
+                                '</div>' +
+                                '<div class="row justify-content-md-center">' +
+                                '<div class="card-description">' +
+                                '<ul class="list-unstyled mt-3 mb-4">' +
+                                '<li ><strong>Date of Purchase: </strong>' + orderArray[i].Date + '</li>' +
+                                '<li ><strong>Payer: </strong>' + orderArray[i].Payer + '</li>' +
+                                '<li ><strong>Total Price: </strong>$' + orderArray[i].TotalPrice + '</li>' +
+                                '<li ><strong>Order Status: </strong><strong class="text-warning">' + orderArray[i].Status + '</strong></li>' +
+                                '</ul>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            )
+                        }
+                    }
+                }
+            });
+        }
+
+        function getAllOrders(id) {
+            $('#orderDetails').html('');
+            $.ajax({
+                type: 'GET',
+                url: orderURI + '?status=' + id  + '&token=' + token,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    $('#titleOrder').html('');
+                    orderArray = data;
+
+                    for (i = 0; i < orderArray.length; i++) {
+                        $('#orderDetails').append(
+                            '<div class="col-lg-12 col-md-6 col-sm-10 pb-4 d-block m-auto" >' +
+                            '<div class="card-item" style="box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);">' +
+                            '<div class="pt-4 pb-3  text-center" style="letter-spacing: 2px">' +
+                            '<h4 style="font - weight: 1000; font - size: 2.0em;" class="text-danger">Order ID: ' + orderArray[i].OrderID +
+                            '</h4>' +
+                            '</div>' +
+                            '<div class="row justify-content-md-center">' +
+                            '<div class="card-description">' +
+                            '<ul class="list-unstyled mt-3 mb-4">' +
+                            '<li ><strong>Date of Purchase: </strong>' + orderArray[i].Date + '</li>' +
+                            '<li ><strong>Payer: </strong>' + orderArray[i].Payer + '</li>' +
+                            '<li ><strong>Total Price: </strong>$' + orderArray[i].TotalPrice + '</li>' +
+                            '<li ><strong>Order Status: </strong><strong class="text-warning">' + orderArray[i].Status + '</strong></li>' +
+                            '<button type="button" index= "' + i + '" class="btn btn-md btn-success w-75 openUpdateOrderBtn" data-toggle="modal" data-target="#updateOrderModal">Update Order</button>' +
+                            '<div> &nbsp; </div>' +
+                            '<button type="button" index= "' + i + '" class="btn btn-md btn-danger w-75 openDeleteOrderBtn"  data-toggle="modal" data-target="#updateOrderModal">Delete Order</button>' +
+
+                            '</ul>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        )
+                    }
+                    $('#titleOrder').append(
+                        'All Orders' +
+                        '<div class="container">' +
+                        '<div class="btn-group" role="group" aria-label="Basic example" >' +
+                        '<button type="button" class="btn btn-secondary" id="all">All</button>' +
+                        '<button type="button" class="btn btn-secondary" id="processing">Processing</button>' +
+                        '<button type="button" class="btn btn-secondary" id="delivering">Delivering</button>' +
+                        '<button type="button" class="btn btn-secondary" id="completed">Completed</button>' +
+                        '</div>' +
+                        '</div>'
+                    )
+                }
+            });
+        }
+
+        $(document).on("click", "#all", function () {
+            id = all;
+            getAllOrders(id);
+        })
+
+        $(document).on("click", "#processing", function () {
+            id = processing;
+            getAllOrders(id);
+        })
+
+        $(document).on("click", "#delivering", function () {
+            id = delivering;
+            getAllOrders(id);
+        })
+
+        $(document).on("click", "#completed", function () {
+            id = completed;
+            getAllOrders(id);
+        })
+
+        function updateOrder(id) {
+            var order = {
+                OrderID: id,
+                Status: $("#updateStatus").val(),
+                Date: $("#updateDate").val(),
+                TotalPrice: $("#updateTotalPrice").val(),
+                Payer: $("#updatePayer").val(),
+                UserID: $("#updateUserID").val()
+            }
+            $.ajax({
+                type: "PUT",
+                url: orderURI + "/" + id + '?token=' + token,
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(order),
+                success: function (data) {
+                    getAllOrders(all);
+                    $('#updateOrderModal').modal("hide");
+                }
+            });
+        }
+
+        $(document).on("click", ".openUpdateOrderBtn, .openDeleteOrderBtn", function () {
+            var num = $(this).attr("index");
+            $('#updateOrderID').val(orderArray[num].OrderID);
+            $('#currentStatus').val(orderArray[num].Status);
+            $('#updateDate').val(orderArray[num].Date);
+            $('#updateTotalPrice').val(orderArray[num].TotalPrice);
+            $('#updatePayer').val(orderArray[num].Payer);
+            $('#updateUserID').val(orderArray[num].UserID);
+
+        })
+
+        $(document).on("click", "#updateOrderBtn", function () {
+            var id = $('#updateOrderID').val();
+            updateOrder(id);
+        })
+
+        function deleteOrder(id) {
+            $.ajax({
+                type: "DELETE",
+                url: orderURI + "/" + id + '?token=' + token,
+                success: function (data) {
+                    getAllOrders(all);
+                    $('#updateOrderModal').modal("hide");
+                }
+            })
+        }
+
+        $(document).on("click", "#deleteOrderBtn", function () {
+            var id = $('#updateOrderID').val();
+            deleteOrder(id);
+        })
+
+    </script>
+</body>
+
+</html>

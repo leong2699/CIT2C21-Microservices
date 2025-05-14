@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Promotions</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cardContainer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <br>
+                <div class="card-columns" id="cardList" style="display: none;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        var promotionURI = "https://newsapi.org/v2/everything?qInTitle=sale&sortBy=popularity&language=en&apiKey=b5200dd6faf847cdad1c7adf497fff12";
+        var promotionArray = [];
+
+        var Role = sessionStorage.getItem("Role");
+
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            $('#cardList').show();
+            $('#cartLink').hide();
+        }
+
+
+        getPromotions();
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardList').show();
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        function getPromotions() {
+            $.ajax({
+                type: 'GET',
+                url: promotionURI,
+                dataType: 'json',
+
+                success: function (data) {
+
+                    promotionArray = data.articles;
+
+                    for (i = 0; i < promotionArray.length; i++) {
+                        $('#cardList').append(
+                            '<div class="card" id="cardList">' +
+                            '<img class="card-img-top" src="' + promotionArray[i].urlToImage + '" alt="Card image cap">' +
+                            '<div class="card-body">' +
+                            '<h5 class="card-title">' + promotionArray[i].title + '</h5>' +
+                            '<p class="card-text">' + promotionArray[i].description + '</p>' +
+                            '<p class="card-text"><small class="text-muted">By: ' + promotionArray[i].author + '</small></p>' +
+                            '<a href="' + promotionArray[i].url + '">Article Link</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '<br>' +
+                            '<br>'
+                        )
+
+
+
+                    }
+
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>

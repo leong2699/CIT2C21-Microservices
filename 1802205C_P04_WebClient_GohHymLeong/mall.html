@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/mystyle.css">
+    <title>SG Mall - Shopping Mall Information</title>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 600px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark bg-grad1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse1">
+            <a class="navbar-brand">
+                <img src="assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="admin.html" id="adminBtn" style="display: none;">Admin</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                <li class="nav-item active">
+                    <a class="nav-link" id="cartLink" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="usernameID"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="accountLink" href="manage-account.html" style="display: none;">Manage
+                        Account</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="loginLink" href="login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="registerLink" href="register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="logoutLink" href="login.html" style="display: none;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cardContainer" style="display:none">
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div id="mallImage">
+
+                    </div>
+
+                    <div class="card-body">
+                        <br>
+                        <div class="w-50 px-3 py-3 pt-md-4 pb-md-4 mx-auto text-center" id="mallName">
+
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row" id="mallInfo">
+
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="col text-center" id="mallDescription">
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card text-center">
+                            <div>
+                                <div>
+                                    <img class="card-img-top"
+                                        src="https://airstewardess.org/wp-content/uploads/2019/01/maxatria-car-parking-con-car-parking-area-design-e-parking-car-parking-area-design-2000x535px-arredamento-per-la-casa.jpg"
+                                        style="height: 250px" alt="Card image cap">
+                                    <div class="card-body bg-light" id="carparkInformation">
+
+                                    </div>
+                                    <div class="card-footer bg-light text-muted">
+                                        * Parking Lots availability are updated in every 1-2 minutes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col text-center">
+                            <h5><strong>Google Maps</strong><br></h5>
+                        </div>
+                        <br>
+                        <div id="map"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+        var carparkURI = "https://api.data.gov.sg/v1/transport/carpark-availability";
+        var carparkArray = [];
+        var mallURI = "https://localhost:44388/api/Malls";
+        var mallArray = [];
+        var mallID = sessionStorage.getItem("MallID");
+
+        var lotsAvailable;
+        var totalLots;
+
+        var Role = sessionStorage.getItem("Role");
+        console.log(mallID)
+
+        var userName = sessionStorage.getItem("username");
+        var userID = sessionStorage.getItem("userID");
+        var token = sessionStorage.getItem("token");
+        if (token != null) {
+            console.log(userName);
+            userIsLoggedIn();
+        } else {
+            getMall(mallID);
+            $('#cardContainer').show("fold", 1500);
+            $('#cartLink').hide();
+        }
+
+
+        $(document).on("click", "#logoutLink", function () {
+            logout();
+        })
+        function logout() {
+            sessionStorage.clear();
+        }
+
+        function userIsLoggedIn() {
+            $('#cardContainer').show("fold", 1500);
+            $('#usernameID').append(userName);
+            $('#loginLink').hide();
+            $('#registerLink').hide();
+            $('#accountLink').show();
+            $('#logoutLink').show();
+            getMall(mallID);
+            if (Role == "Admin") {
+                isAdmin()
+            } else {
+                console.log("user");
+            }
+
+        }
+
+        function isAdmin() {
+            $('#adminBtn').show();
+        }
+
+        function getMall(mallID) {
+            $.ajax({
+                type: 'GET',
+                url: mallURI + '/' + mallID,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    mallArray = data;
+                    console.log(data);
+
+                    var carparkCode = mallArray.CarparkCode;
+                    console.log(carparkCode)
+                    getCarpark(carparkCode);
+
+                    $('#mallImage').append(
+                        '<img class="card-img-top" src="data:image/jpeg;base64,' + mallArray.MallImage + '" alt="Card image cap">'
+                    )
+
+                    $('#mallName').append(
+                        '<h1 class="display-5 font-weight-bold">' + mallArray.MallName + '</h1>'
+                    );
+                    $('#mallInfo').append(
+                        '<div class="col text-center">' +
+                        '<a><strong>Location: </strong><br>' + mallArray.Location + '</a>' +
+                        '</div>' +
+                        '<div class="coL text-center">' +
+                        '<a><strong>Opening Date: </strong><br>' + mallArray.OpeningDate + '</a>' +
+                        '</div>' +
+                        '<div class="col text-center">' +
+                        '<a><strong>Opening Hours: </strong><br>' + mallArray.OpeningHours + '</a>' +
+                        '</div>'
+                    )
+                    $('#mallDescription').append(
+                        '<a><strong>Mall Description: </strong><br>' + mallArray.Description + '</a>'
+                    )
+
+                    sessionStorage.setItem("Latitude", mallArray.Latitude);
+                    sessionStorage.setItem("Longitude", mallArray.Longitude);
+
+
+                    lotsAvailable = sessionStorage.getItem("lotsAvailable");
+                    totalLots = sessionStorage.getItem("totalLots");
+
+                    var place = { lat: mallArray.Latitude, lng: mallArray.Longitude };
+
+                    var map = new google.maps.Map(
+                        document.getElementById('map'), { zoom: 20, center: place });
+
+                    var marker = new google.maps.Marker({ position: place, map: map, animation: google.maps.Animation.BOUNCE });
+
+                    var infowindow = new google.maps.InfoWindow();
+
+                    var lmao = google.maps.event.addListener(marker, 'click', (function (marker) {
+                        return function () {
+                            infowindow.setContent(mallArray.MallName);
+                            infowindow.open(this.map, marker);
+                        }
+                    })(marker));
+
+                    $('#carparkInformation').append(
+                        '<h5 class="card-title">' + mallArray.MallName + ' Carpark Availablity</h5 > ' +
+                        '<p class= "card-text" > ' +
+                        '<br> ' +
+                        'Current Lots Available: <strong>' + lotsAvailable + '</strong> <br>' +
+                        'Total Lots Available: <strong>' + totalLots + '</strong></p>'
+                    )
+
+                }
+            });
+        }
+
+        //Get Carpark Information
+        function getCarpark(carparkCode) {
+            $.ajax({
+                type: 'GET',
+                url: carparkURI,
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+
+                    carparkArray = data.items[0].carpark_data;
+                    for (i = 0; i < carparkArray.length; i++) {
+
+                        if (carparkArray[i].carpark_number == carparkCode) {
+                            sessionStorage.setItem("lotsAvailable", carparkArray[i].carpark_info[0].lots_available);
+                            sessionStorage.setItem("totalLots", carparkArray[i].carpark_info[0].total_lots);
+
+
+                        }
+                    }
+
+                }
+            });
+        }
+
+        //sets timer to reload the page to get CarparkInfo's sessionStorage saved
+        window.onload = function () {
+            if (!window.location.hash) {
+                setTimeout(function () {
+                    window.location = window.location + '#loaded';
+                    window.location.reload()
+                }, 1000);
+            }
+        }
+
+
+    </script>
+
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjCiz0U0NzMSsbrOOAwx7qSIzadjkyBFU">
+    </script>
+
+
+</body>
+
+</html>
+
+
