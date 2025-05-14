@@ -1,0 +1,177 @@
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\orderServices.dll.config
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\orderServices.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\orderServices.pdb
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csc.exe
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csc.exe.config
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csc.rsp
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csi.exe
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csi.exe.config
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\csi.rsp
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.AppContext.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Console.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.IO.Compression.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Claims.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.ValueTuple.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\vbc.exe
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\vbc.exe.config
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\vbc.rsp
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\VBCSCompiler.exe
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Antlr3.Runtime.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Newtonsoft.Json.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Net.Http.Formatting.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Helpers.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Http.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Http.WebHost.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Mvc.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Optimization.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Razor.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.Razor.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\WebGrease.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Newtonsoft.Json.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Net.Http.Formatting.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Helpers.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Http.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Http.WebHost.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Mvc.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Optimization.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.Razor.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\System.Web.WebPages.Razor.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Antlr3.Runtime.pdb
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\obj\Debug\orderServices.csprojAssemblyReference.cache
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\obj\Debug\orderServices.csproj.CopyComplete
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\obj\Debug\orderServices.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\obj\Debug\orderServices.pdb
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\EntityFramework.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\EntityFramework.SqlServer.dll
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\EntityFramework.xml
+C:\Users\Goh Hym Leong\source\repos\orderServices\orderServices\bin\EntityFramework.SqlServer.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\orderServices.dll.config
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\orderServices.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\orderServices.pdb
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csc.exe
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csc.exe.config
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csc.rsp
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csi.exe
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csi.exe.config
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\csi.rsp
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.AppContext.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Collections.Immutable.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Console.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.IO.Compression.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.IO.FileSystem.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.IO.Pipes.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Reflection.Metadata.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.AccessControl.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Claims.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.ValueTuple.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Xml.XPath.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\vbc.exe
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\vbc.exe.config
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\vbc.rsp
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\VBCSCompiler.exe
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\roslyn\VBCSCompiler.exe.config
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Antlr3.Runtime.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\EntityFramework.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\EntityFramework.SqlServer.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Microsoft.Web.Infrastructure.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Newtonsoft.Json.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Net.Http.Formatting.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Helpers.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.WebHost.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Mvc.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Optimization.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Razor.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.Deployment.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.Razor.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\WebGrease.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\EntityFramework.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\EntityFramework.SqlServer.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Newtonsoft.Json.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Net.Http.Formatting.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Helpers.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.WebHost.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Mvc.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Optimization.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Razor.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.Deployment.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.WebPages.Razor.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Antlr3.Runtime.pdb
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.csprojAssemblyReference.cache
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.csproj.CopyComplete
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.pdb
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.Migrations.InitialCreate.resources
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.csproj.GenerateResource.cache
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.Migrations.Initial.resources
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Cors.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.Cors.dll
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\bin\System.Web.Http.Cors.xml
+D:\Temasek Poly\2.2\Microservices\SGMall\orderServices\orderServices\obj\Debug\orderServices.Migrations.Initial1.resources
